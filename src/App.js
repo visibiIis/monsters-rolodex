@@ -11,6 +11,12 @@ class App extends Component {
 			monsters: [],
 			searchField: "",
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange(e) {
+		this.setState({ searchField: e.target.value });
 	}
 
 	componentDidMount() {
@@ -19,10 +25,6 @@ class App extends Component {
 			.then((users) => this.setState({ monsters: users }));
 	}
 
-	handleChange = (e) => {
-		this.setState({ searchField: e.target.value });
-	};
-
 	render() {
 		const { monsters, searchField } = this.state;
 		const filteredMonsters = monsters.filter((monster) =>
@@ -30,6 +32,7 @@ class App extends Component {
 		);
 		return (
 			<div className="App">
+				<h1 className="heading">Monsters Rolodex</h1>
 				<SearchBox
 					placeholder="Search monsters..."
 					handleChange={this.handleChange}
